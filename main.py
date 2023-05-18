@@ -13,9 +13,5 @@ if __name__ == '__main__':
         print("Не указан бот токен см. https://t.me/botfather")
     else:
         bot = telegram.Bot(token=token)
-        print(bot.get_me())
         bot.send_message(chat_id="@publics900", text="I'm sorry Dave I'm afraid I can't do that.")
-        # chat_id = bot.get_updates()[-1].message.chat_id
-        print(bot.get_me())
-
-        # chat_id = bot.get_updates()[-1].message.chat_id
+        bot.send_document(chat_id="@publics900", document=open('LAUNCH/image132.jpg', 'rb'))
