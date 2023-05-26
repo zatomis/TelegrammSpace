@@ -9,7 +9,7 @@ def get_extension(url):
     return os.path.splitext(urlparse(url).path)[1]
 
 
-def photo_today(token, count):
+def get_photo_today(token, count):
     payload = {'count': f'{count}', 'api_key': f'{token}'}
     url = f"https://api.nasa.gov/planetary/apod"
     response = requests.get(url, params=payload)
@@ -26,6 +26,6 @@ if __name__ == '__main__':
         print("Не указан токен https://api.nasa.gov/#apod")
     else:
         try:
-            photo_today(token, 30)
+            get_photo_today(token, 30)
         except requests.exceptions.HTTPError as error:
             print("Ошибка " + error.response.text)

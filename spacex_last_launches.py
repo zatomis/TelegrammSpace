@@ -20,7 +20,7 @@ def fetch_spacex_last_launch(url):
                 save.image_save(link, f"image{total_links}{link_number}.jpg", "LAUNCH")
 
     except requests.exceptions.HTTPError as error:
-        print("Ошибка " + error.response.text)
+        print(f"Ошибка {error.response.text}")
 
 if __name__ == '__main__':
     try:
