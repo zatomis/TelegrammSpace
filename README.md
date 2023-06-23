@@ -40,9 +40,13 @@ pip install -r requirements.txt
 ```
 
 ## Пример запуска
-### python3 photo_day.py
+```
+python3 photo_day.py
+```
 создаст папку и сохранит туда фото
-### python3 main.py -f 10
+```
+python3 main.py -f 10
+```
 запустит вашего бота, и с частотой 10 раз в 4-е часа будет присылать вам фото из ваших папок
 
 ## Автор

@@ -18,9 +18,8 @@ def get_epic_photo(token):
     response.raise_for_status()
     for link_number, json_link in enumerate(response.json(), start=1):
         date_iso = datetime.fromisoformat(json_link['date']).strftime('%Y/%m/%d')
-        # url = f"https://api.nasa.gov/EPIC/archive/natural/{date_iso}/png/{json_link['image']}.png?api_key={token}"
         url = f"https://api.nasa.gov/EPIC/archive/natural/{date_iso}/png/{json_link['image']}.png"
-        save.image_save(url, f"Nasa{link_number}{get_extension(url)}", "IMAGE_EPIC", token)
+        save.save_photo(url, f"Nasa{link_number}{get_extension(url)}", "IMAGE_EPIC", token)
 
 
 if __name__ == '__main__':
@@ -33,4 +32,4 @@ if __name__ == '__main__':
         try:
             get_epic_photo(token)
         except requests.exceptions.HTTPError as error:
-            print("Ошибка " + error.response.text)
+            print(f"Ошибка {error.response.text}")

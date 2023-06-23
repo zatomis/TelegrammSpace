@@ -40,9 +40,13 @@ if __name__ == '__main__':
                         image_list.append(photo_file)
             bot = telegram.Bot(token=token)
             while True:
-                with open(random.choice(image_list),'rb') as image_file:
-                    bot.send_document(chat_id=telegram_chanel, document=image_file)
-                    time.sleep(int(TIME_DELAY)/frequency)
+                try:
+                    with open(random.choice(image_list), 'rb') as image_file:
+                        bot.send_document(chat_id=telegram_chanel, document=image_file)
+                        time.sleep(TIME_DELAY / frequency)
+                except telegram.error.NetworkError:
+                    print('There was no internet connection.')
+
     else:
         print("Не указан параметр частоты запуска скрипта -f")
 

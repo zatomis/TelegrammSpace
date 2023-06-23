@@ -8,22 +8,19 @@ def get_extension(url):
     return os.path.splitext(urlparse(url).path)[1]
 
 
-def fetch_spacex_last_launch(url):
+def download_photos_of_launches(url):
     response = requests.get(url)
     response.raise_for_status()
-    try:
-        for total_links in range(1,len(response.json())):
-            response = requests.get(f"{url}{str(total_links)}")
-            response.raise_for_status()
-            links = response.json()["links"]['flickr_images']
-            for link_number, link in enumerate(links, start=1):
-                save.image_save(link, f"image{total_links}{link_number}.jpg", "LAUNCH")
+    for flight_number in range(1,len(response.json())):
+        response = requests.get(url+str(flight_number))
+        response.raise_for_status()
+        links = response.json()["links"]['flickr_images']
+        for link_number, link in enumerate(links, start=1):
+            save.save_photo(link, f"image{flight_number}{link_number}.jpg", "LAUNCH")
 
-    except requests.exceptions.HTTPError as error:
-        print(f"Ошибка {error.response.text}")
 
 if __name__ == '__main__':
     try:
-        fetch_spacex_last_launch("https://api.spacexdata.com/v3/launches/")
+        download_photos_of_launches("https://api.spacexdata.com/v3/launches/")
     except requests.exceptions.HTTPError as error:
-        print("Ошибка " + error.response.text)
+        print(f"Ошибка {error.response.text}")
