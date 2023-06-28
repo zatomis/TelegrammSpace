@@ -46,6 +46,7 @@ if __name__ == '__main__':
                         time.sleep(TIME_DELAY / frequency)
                 except telegram.error.NetworkError:
                     print('There was no internet connection.')
+                    time.sleep(60)
 
     else:
         print("Не указан параметр частоты запуска скрипта -f")
