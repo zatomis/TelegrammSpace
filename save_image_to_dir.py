@@ -2,7 +2,7 @@ import os
 from urllib.parse import urlparse
 import requests
 
-def save_photo(url_image, name_image, path_image, url_param=""):
+def save_photo(url_image, name_image, path_image, url_param=None):
     os.makedirs(path_image,exist_ok = True)
     if url_param:
         response = requests.get(url_image, params={'api_key':url_param})

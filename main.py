@@ -11,7 +11,7 @@ TIME_DELAY = 4*60*60
 
 def create_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-f', '--freq', type=int, help='Частота-раз публикаций в 4 часа')
+    parser.add_argument('-f', '--freq',  default='10', type=int, help='Частота-раз публикаций в 4 часа')
     return parser
 
 def check_photo_file(path):
