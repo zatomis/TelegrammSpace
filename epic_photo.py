@@ -1,6 +1,5 @@
 import requests
 import os
-import json
 from urllib.parse import urlparse
 from dotenv import load_dotenv, find_dotenv
 import save_image_to_dir as save
@@ -19,7 +18,7 @@ def get_epic_photo(token):
     for link_number, json_link in enumerate(response.json(), start=1):
         date_iso = datetime.fromisoformat(json_link['date']).strftime('%Y/%m/%d')
         url = f"https://api.nasa.gov/EPIC/archive/natural/{date_iso}/png/{json_link['image']}.png"
-        save.save_photo(url, f"Nasa{link_number}{get_extension(url)}", "IMAGE_EPIC", token)
+        save.save_photo(url, f"Nasa{link_number}{get_extension(url)}", "IMAGE_EPIC", payload)
 
 
 if __name__ == '__main__':
