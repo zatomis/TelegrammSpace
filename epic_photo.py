@@ -10,8 +10,8 @@ def get_extension(url):
     return os.path.splitext(urlparse(url).path)[1]
 
 
-def get_epic_photo(token):
-    payload = {'api_key': token}
+def get_epic_photo(token_name):
+    payload = {'api_key': token_name}
     url = "https://api.nasa.gov/EPIC/api/natural/images"
     response = requests.get(url, params=payload)
     response.raise_for_status()

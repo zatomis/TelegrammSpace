@@ -8,18 +8,21 @@ import argparse
 
 TIME_DELAY = 4*60*60
 
+
 def create_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('-f', '--freq',  default='10', type=int, help='Частота-раз публикаций в 4 часа')
     return parser
 
+
 def check_photo_file(path):
     photo_ext = ['jpg', 'png', 'bmp', 'gif']
     extension = str(os.path.splitext(urlparse(path).path)[1])
     correct_ext = False
-    if (extension.replace(".","") in photo_ext) and (os.stat(path).st_size<20000000):
+    if (extension.replace(".", "") in photo_ext) and (os.stat(path).st_size < 20000000):
         correct_ext = True
     return correct_ext
+
 
 if __name__ == '__main__':
     load_dotenv(find_dotenv())
@@ -45,6 +48,3 @@ if __name__ == '__main__':
             except telegram.error.NetworkError:
                 print('There was no internet connection.')
                 time.sleep(60)
-    else:
-        print("Не указан параметр частоты запуска скрипта -f")
-
