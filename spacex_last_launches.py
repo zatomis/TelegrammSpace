@@ -1,18 +1,7 @@
 import requests
-import os
-import datetime
-from urllib.parse import urlparse
 import save_image_to_dir as save
+import save_image_to_dir as get_data_time
 import argparse
-
-
-def get_extension(url):
-    return os.path.splitext(urlparse(url).path)[1]
-
-
-def day_time_now():
-    dt = datetime.datetime.today()
-    return f"{dt.year}{dt.month}{dt.day}{dt.hour}{dt.minute}"
 
 
 def create_parser():
@@ -26,10 +15,12 @@ def download_photos_of_launches(count):
     response = requests.get(url)
     response.raise_for_status()
     launches = response.json()
-    for launch in launches[:count]:
-        for index, space_url in enumerate(launch["links"]['flickr_images']):
-            save.save_photo(space_url, f"img{index}{day_time_now()}.jpg", "LAUNCH")
-
+    list_photo = []
+    for launch in launches:
+        for space_url in launch["links"]['flickr_images']:
+            list_photo.append(space_url)
+    for index, photo_url in enumerate(list_photo[:count]):
+        save.save_photo(photo_url, f"img{index}{get_data_time.get_day_time_now()}.jpg", "LAUNCH")
 
 if __name__ == '__main__':
     try:

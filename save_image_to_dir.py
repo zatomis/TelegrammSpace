@@ -1,5 +1,11 @@
 import os
 import requests
+import datetime
+
+
+def get_day_time_now():
+    dt = datetime.datetime.today()
+    return f"{dt.year}{dt.month}{dt.day}{dt.hour}{dt.minute}"
 
 
 def save_photo(url_image, name_image, path_image, params=None):
