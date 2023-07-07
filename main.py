@@ -6,7 +6,7 @@ import random
 import time
 import argparse
 
-TIME_DELAY = 4*60*60
+TIME_DELAY = 4 * 60 * 60
 
 
 def create_parser():

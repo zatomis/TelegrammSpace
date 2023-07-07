@@ -14,7 +14,8 @@ def get_photo_today(token, photo_count):
     response.raise_for_status()
     for photo_number, photo_link in enumerate(response.json(), start=1):
         try:
-            save.save_photo(photo_link['url'], f"img_of_the_day{photo_number}{get_data_time.get_day_time_now()}.jpg", "IMAGE_DAY")
+            save.save_photo(photo_link['url'], f"img_of_the_day{photo_number}{get_data_time.get_day_time_now()}.jpg",
+                            "IMAGE_DAY")
         except URLError as error:
             print(f"{error}\nНе верный адрес для загрузки фото {photo_link['url']}")
 
