@@ -15,11 +15,11 @@ def download_photos_of_launches(count):
     response = requests.get(url)
     response.raise_for_status()
     launches = response.json()
-    photo = []
+    photo_urls = []
     for launch in launches:
         for space_url in launch["links"]['flickr_images']:
-            photo.append(space_url)
-    for index, photo_url in enumerate(photo[:count]):
+            photo_urls.append(space_url)
+    for index, photo_url in enumerate(photo_urls[:count]):
         save.save_photo(photo_url, f"img{index}{get_data_time.get_day_time_now()}.jpg", "LAUNCH")
 
 
